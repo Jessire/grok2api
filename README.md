@@ -1,3 +1,13 @@
+---
+title: Grok2API
+emoji: 🚀
+colorFrom: gray
+colorTo: blue
+sdk: docker
+app_port: 8000
+startup_duration_timeout: 1h
+---
+
 <div align="center">
 
 <img alt="Grok2API" src="https://github.com/user-attachments/assets/037a0a6e-7986-41cc-b4af-04df612ee886" />
