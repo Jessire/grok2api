@@ -364,6 +364,24 @@ basic表示free账号，spuer和heavy 为付费
 
 运行时配置支持 `GROK_` 前缀覆盖，如 `GROK_APP_API_KEY` 覆盖 `app.api_key`。
 
+### PostgreSQL -> TiDB 迁移
+
+如果你当前账号数据在 Aiven PostgreSQL, 目标要切到 TiDB, 直接运行:
+
+```bash
+uv run python scripts/migrate_account_storage.py \
+  --source-postgres "postgresql://avnadmin:password@host:26257/defaultdb?sslmode=require" \
+  --target-host "gateway01.us-west-2.prod.aws.tidbcloud.com" \
+  --target-password "tidb-password"
+```
+
+迁移完成后将服务环境切到:
+
+```bash
+ACCOUNT_STORAGE=mysql
+ACCOUNT_MYSQL_URL=mysql+aiomysql://root:tidb-password@gateway01.us-west-2.prod.aws.tidbcloud.com:4000/grok2api?charset=utf8mb4&ssl-mode=REQUIRED
+```
+
 ---
 
 ## 调用示例
